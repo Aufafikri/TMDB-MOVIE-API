@@ -46,7 +46,7 @@ const Actor: React.FC<Props> = ({ params }) => {
         {filteredActors?.map((credit) => {
           if (!credit.profile_path) {
             return (
-              <div className="w-40 h-52 flex items-center justify-center bg-gray-600 image-scale">
+              <div key={credit.id} className="w-40 h-52 flex items-center justify-center bg-gray-600 image-scale">
                 <div className="flex-col flex justify-center items-center">
                   <span>
                     <Warning size={32} color="#fbff0f" weight="fill" />

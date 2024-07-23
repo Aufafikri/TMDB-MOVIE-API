@@ -22,9 +22,10 @@ import {
 import { trunCateText } from "@/utils/truncateText";
 import { Warning } from "@phosphor-icons/react";
 import { formatDate } from "@/utils/formatDate";
-import '../../../../styles/dev.css'
+import "../../../../styles/dev.css";
 import { useFilterHistory } from "../../../../hooks/filters/useFilter";
 import Footer from "@/components/Footer/Footer";
+import Image from "next/image";
 
 interface Props {
   params: {
@@ -34,9 +35,9 @@ interface Props {
 
 const Person: React.FC<Props> = ({ params }) => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState('newest');
-  const {filter, setFilter} = useFilterHistory()
-  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const [sortBy, setSortBy] = useState("newest");
+  const { filter, setFilter } = useFilterHistory();
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
   const [showFullBio, setShowFullBio] = useState(false);
   const { data: person } = usePerson(params.id);
@@ -68,7 +69,7 @@ const Person: React.FC<Props> = ({ params }) => {
         const dateA = new Date(a.release_date).getTime();
         const dateB = new Date(b.release_date).getTime();
 
-        if (sortOrder === 'newest') {
+        if (sortOrder === "newest") {
           return dateB - dateA;
         } else {
           return dateA - dateB;
@@ -78,24 +79,32 @@ const Person: React.FC<Props> = ({ params }) => {
     }
   }, [sortOrder, historyPersonMovie]);
 
-  const handleSortOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortOrder(event.target.value as 'newest' | 'oldest');
+  const handleSortOrderChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSortOrder(event.target.value as "newest" | "oldest");
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value)
-  }
+    setFilter(e.target.value);
+  };
 
-  const filteredHistory = historyPersonMovie?.cast.filter((histori) => histori.original_title.toLowerCase().includes(filter.toLowerCase()) || histori.release_date.toLowerCase().includes(filter.toLowerCase()))
+  const filteredHistory = historyPersonMovie?.cast.filter(
+    (histori) =>
+      histori.original_title.toLowerCase().includes(filter.toLowerCase()) ||
+      histori.release_date.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <div className="test-simple">
       {/* <Navbar setSearchQuery={setSearchQuery} /> */}
       <div className="flex p-8 max-sm:block">
-        <img
+        <Image
           src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${person?.profile_path}`}
-          alt=""
-          className="w-96 h-[500px] rounded-md max-sm:w-80 max-sm:h-full max-sm:object-cover "
+          alt={`${person?.name}'s Profile Image`}
+          width={384}
+          height={500}
+          className="rounded-md max-sm:w-80 max-sm:h-full max-sm:object-cover"
         />
         <div className="p-6 max-sm:p-2">
           <h1 className="mb-4 text-4xl font-bold max-sm:text-center">
@@ -201,10 +210,11 @@ const Person: React.FC<Props> = ({ params }) => {
                   <div key={credit.id} className="mb-4">
                     <Link href={`/popular/${credit.id}`}>
                       <Card>
-                        <img
+                        <Image
                           src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${credit.poster_path}`}
-                          alt=""
-                          className="w-56 h-56 image-scale object-cover"
+                          alt="Movie Poster"
+                          height={224}
+                          className="image-scale object-cover"
                         />
                       </Card>
                     </Link>
@@ -216,14 +226,22 @@ const Person: React.FC<Props> = ({ params }) => {
       </div>
       <div className="p-4 min-h-screen">
         <div className="flex justify-between">
-        <h1 className="text-4xl font-bold max-sm:text-2xl">Riwayat Perfilman</h1>
-        <select onChange={handleSortOrderChange} value={sortOrder}>
+          <h1 className="text-4xl font-bold max-sm:text-2xl">
+            Riwayat Perfilman
+          </h1>
+          <select onChange={handleSortOrderChange} value={sortOrder}>
             <option value="newest">Tanggal Terlama</option>
             <option value="oldest">Tanggal Terbaru</option>
           </select>
         </div>
         <div className="my-4 mb-4">
-        <input type="text" className="border shadow-md shadow-gray-600 p-1 rounded-md w-60 focus:outline-none focus:outline-gray-700 dark:shadow-blue-600 dark:focus:outline-indigo-700" placeholder="cari riwayat film..." value={filter} onChange={handleChange} />
+          <input
+            type="text"
+            className="border shadow-md shadow-gray-600 p-1 rounded-md w-60 focus:outline-none focus:outline-gray-700 dark:shadow-blue-600 dark:focus:outline-indigo-700"
+            placeholder="cari riwayat film..."
+            value={filter}
+            onChange={handleChange}
+          />
         </div>
         <div className="grid grid-cols-3 mt-2 gap-4 max-sm:grid-cols-1">
           {filteredHistory?.map((historyPerson) => {
@@ -261,7 +279,7 @@ const Person: React.FC<Props> = ({ params }) => {
           })}
         </div>
       </div>
-  <Footer />
+      <Footer />
     </div>
   );
 };
