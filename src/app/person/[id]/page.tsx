@@ -246,6 +246,7 @@ const Person: React.FC<Props> = ({ params }) => {
         <div className="grid grid-cols-3 mt-2 gap-4 max-sm:grid-cols-1">
           {filteredHistory?.map((historyPerson) => {
             return (
+              <div key={historyPerson.id}>
               <Link href={`../popular/${historyPerson.id}`}>
                 <Card className="p-4 shadow-lg hover:shadow-xl cursor-pointer dark:hover:shadow-gray-800">
                   <div key={historyPerson?.id}>
@@ -275,6 +276,7 @@ const Person: React.FC<Props> = ({ params }) => {
                   </div>
                 </Card>
               </Link>
+              </div>
             );
           })}
         </div>
