@@ -7,6 +7,7 @@ import "../../../../styles/dev.css";
 import { Warning } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useFilterActors } from "../../../../hooks/filters/useFilter";
+import Image from "next/image";
 
 interface Props {
   params: {
@@ -78,7 +79,7 @@ const Actor: React.FC<Props> = ({ params }) => {
         {filteredDirectors?.map((credit) => {
           if (!credit.profile_path) {
             return (
-              <div className="w-40 h-52 flex items-center justify-center bg-gray-600 image-scale">
+              <div key={credit.id} className="w-40 h-52 flex items-center justify-center bg-gray-600 image-scale">
                 <div className="flex-col flex justify-center items-center">
                   <span>
                     <Warning size={32} color="#fbff0f" weight="fill" />
@@ -110,7 +111,7 @@ const Actor: React.FC<Props> = ({ params }) => {
         {filteredWriters?.map((credit) => {
           if (!credit.profile_path) {
             return (
-              <div className="w-40 h-52 flex items-center justify-center bg-gray-600 image-scale">
+              <div key={credit.id} className="w-40 h-52 flex items-center justify-center bg-gray-600 image-scale">
                 <div className="flex-col flex justify-center items-center">
                   <span>
                     <Warning size={32} color="#fbff0f" weight="fill" />
@@ -121,7 +122,7 @@ const Actor: React.FC<Props> = ({ params }) => {
             );
           }
           return (
-            <div>
+            <div key={credit.id}>
               <Link href={`/person/${credit.id}`}>
                 <Card>
                   <img
