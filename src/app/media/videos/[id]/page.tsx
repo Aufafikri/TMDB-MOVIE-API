@@ -1,9 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const Videos = () => {
   return (
     <div>videomaseh</div>
   )
 }
 
-export default page
+export default Videos

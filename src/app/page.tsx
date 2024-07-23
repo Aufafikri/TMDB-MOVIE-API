@@ -11,7 +11,7 @@ import Hero from "@/components/Hero/Hero";
 import { useState } from "react";
 import Footer from "@/components/Footer/Footer";
 
-const page: React.FC = () => {
+const Page: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null)
   return (
     <>
@@ -36,4 +36,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default Page;

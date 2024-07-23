@@ -9,7 +9,7 @@ interface Props {
     };
   }
 
-const page: React.FC<Props> = ({ params }) => {
+const Images: React.FC<Props> = ({ params }) => {
     const { data } = useFetchImages(params.id)
 
   return (
@@ -28,4 +28,4 @@ const page: React.FC<Props> = ({ params }) => {
   )
 }
 
-export default page
+export default Images

@@ -39,7 +39,7 @@ interface Props {
   };
 }
 
-const Page: React.FC<Props> = ({ params }) => {
+const Popular: React.FC<Props> = ({ params }) => {
   const [trailerMovie, setTrailerMovie] = useState<string | number | null>(
     null
   );
@@ -411,4 +411,4 @@ const Page: React.FC<Props> = ({ params }) => {
   );
 };
 
-export default Page;
+export default Popular;

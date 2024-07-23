@@ -11,7 +11,7 @@ interface paramsProps {
     params: any
 }
 
-const page: React.FC<paramsProps> = ({ params }) => {
+const Search: React.FC<paramsProps> = ({ params }) => {
     const keyword = params.keyword
     const decodedKeyword = decodeURI(keyword)
 
@@ -53,4 +53,4 @@ const page: React.FC<paramsProps> = ({ params }) => {
   )
 }
 
-export default page
+export default Search

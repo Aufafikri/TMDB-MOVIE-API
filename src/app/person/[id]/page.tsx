@@ -7,17 +7,10 @@ import {
 } from "@/features/persons/usePersons";
 import React, { ChangeEvent, useEffect } from "react";
 import { useState } from "react";
-// import { Source_Sans_3 } from 'next/font/google'
 import "../../../../styles/dev.css";
-import {
-  MoviePersonCreditResponse,
-  moviePersonCredit,
-} from "../../../../types/people/movie_credits/movieCredit";
-import { Person } from "../../../../types/people/person/person";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { useSosmedPerson } from "@/features/persons/useSosmedPerson";
-// import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import {
   FacebookLogo,
   InstagramLogo,
@@ -25,10 +18,8 @@ import {
   YoutubeLogo,
   Users,
   Sparkle,
-  House,
 } from "@phosphor-icons/react";
 import { trunCateText } from "@/utils/truncateText";
-import Navbar from "@/components/Navbar/Navbar";
 import { Warning } from "@phosphor-icons/react";
 import { formatDate } from "@/utils/formatDate";
 import '../../../../styles/dev.css'
@@ -41,7 +32,7 @@ interface Props {
   };
 }
 
-const page: React.FC<Props> = ({ params }) => {
+const Person: React.FC<Props> = ({ params }) => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('newest');
   const {filter, setFilter} = useFilterHistory()
@@ -275,4 +266,4 @@ const page: React.FC<Props> = ({ params }) => {
   );
 };
 
-export default page;
+export default Person;
