@@ -35,7 +35,7 @@ const InputSearch: React.FC<SearchQueryProps> = ({ setSearchQuery }) => {
   return (
     <div>
       <button onClick={handleSearch}>
-      <MagnifyingGlass width={24} height={24} className="absolute top-8 left-[595px] max-sm:right-48" />
+      <MagnifyingGlass width={24} height={24} className="absolute top-8 left-[595px] max-sm:right-48 max-sm:hidden" />
       </button>
       <input
         type="text"
