@@ -1,6 +1,5 @@
 "use client";
 
-// import { useFetchMovie, useGenreMovies } from '@/features/movies/useFetchMovie'
 import { useFetchMovieById } from "@/features/movies/useFetchMovieById";
 import { useWatchTrailer } from "@/features/movies/useWatchTrailer";
 import VideoPlayer from "@/utils/VideoPlayer";
@@ -9,7 +8,6 @@ import React, { useEffect, useState } from "react";
 import Youtube from "react-youtube";
 import {
   LineVertical,
-  Star,
   TwitterLogo,
   Warning,
 } from "@phosphor-icons/react";
@@ -17,21 +15,17 @@ import {
   useFetchImages,
   useReleaseDate,
 } from "@/features/movies/useFetchMovie";
-import { ReleaseDate } from "../../../../types/release/release";
 import { useRecomemndations } from "@/features/movies/useRecommendations";
-import { discoverMovieType } from "../../../../types/discovers/discoverMovies";
 import { useCreditsMovie } from "@/features/credits/useCreditsMovie";
 import "../../../../styles/dev.css";
 import { Card } from "@/components/ui/card";
 import { useSocialMedia } from "@/features/social-media/useSocialMedia";
 import { InstagramLogo, FacebookLogo } from "@phosphor-icons/react";
-import Navbar from "@/components/Navbar/Navbar";
 import { trunCateText } from "@/utils/truncateText";
 import "../../../../styles/dev.css";
-import { ImageTypeProps } from "../../../../types/images/type";
-import YouTube from "react-youtube";
 import "../../../../styles/dev.css";
 import Footer from "@/components/Footer/Footer";
+import BackButton from "@/components/ui/back";
 
 interface Props {
   params: {
@@ -43,7 +37,6 @@ const Popular: React.FC<Props> = ({ params }) => {
   const [trailerMovie, setTrailerMovie] = useState<string | number | null>(
     null
   );
-  const [searchQuery, setSearchQuery] = useState<string | null>(null);
 
   const { data: movie, isLoading, isError } = useFetchMovieById(params.id);
   const { data: releaseDate } = useReleaseDate(params.id);
@@ -51,11 +44,6 @@ const Popular: React.FC<Props> = ({ params }) => {
   const { data: credits } = useCreditsMovie(params.id);
   const { data: socialMedia } = useSocialMedia(params.id);
   const { data: backdropsImage } = useFetchImages(params.id);
-
-  // console.log(useState, useEffect } from 'react';
-
-
-  console.log(credits);
 
   useEffect(() => {
     if (movie) {
@@ -72,8 +60,6 @@ const Popular: React.FC<Props> = ({ params }) => {
   const trailerVideoOne = trailer?.[2]?.key || "";
   const trailerVideoTwo = trailer?.[3]?.key || "";
   const trailerVideoThree = trailer?.[4]?.key || "";
-
-  console.log(movie);
 
   const exchangeRate = 16000;
 
@@ -104,7 +90,9 @@ const Popular: React.FC<Props> = ({ params }) => {
 
   return (
     <div>
-      {/* <Navbar  setSearchQuery={setSearchQuery}/> */}
+      <div className="p-4">
+        <BackButton />
+      </div>
       <div className="min-h-screen flex justify-center items-center gap-4 relative">
         <div className="absolute inset-0 z-0">
           <img

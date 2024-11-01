@@ -16,7 +16,6 @@ const Navbar: React.FC<setSearchQueryProps> = ({ setSearchQuery }) => {
     <div className="">
       <div className="flex justify-between p-6 max-sm:p-4 items-center max-sm:block">
         <h1 className="text-2xl font-bold">EvstMovie</h1>
-        <p>test</p>
         <InputSearch setSearchQuery={setSearchQuery} />
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

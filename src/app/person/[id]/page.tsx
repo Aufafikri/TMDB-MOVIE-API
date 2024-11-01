@@ -26,6 +26,7 @@ import "../../../../styles/dev.css";
 import { useFilterHistory } from "../../../../hooks/filters/useFilter";
 import Footer from "@/components/Footer/Footer";
 import Image from "next/image";
+import BackButton from "@/components/ui/back";
 
 interface Props {
   params: {
@@ -97,7 +98,9 @@ const Person: React.FC<Props> = ({ params }) => {
 
   return (
     <div className="test-simple">
-      {/* <Navbar setSearchQuery={setSearchQuery} /> */}
+      <div className="p-4">
+      <BackButton />
+      </div>
       <div className="flex p-8 max-sm:block">
         <Image
           src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${person?.profile_path}`}
@@ -214,6 +217,7 @@ const Person: React.FC<Props> = ({ params }) => {
                           src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${credit.poster_path}`}
                           alt="Movie Poster"
                           height={224}
+                          width={200}
                           className="image-scale object-cover"
                         />
                       </Card>
